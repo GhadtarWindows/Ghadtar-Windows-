@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghadtar Windows | Shaping Your Dreams</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    html{scroll-behavior:smooth;}
+    body{background:#fff;color:#222;overflow-x:hidden;}
+    img{max-width:100%;display:block;}
+    a{text-decoration:none;color:inherit;}
+    ul{list-style:none;}
+
+    :root{
+      --black:#0b0b0c;
+      --gold:#D4AF37;
+      --gold-soft:#E9CD73;
+      --sky:#3EC3F0;
+      --white:#ffffff;
+      --gray:#6d6d6d;
+      --offwhite:#f7f7f7;
+    }
+
+    #loader {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: #000; display: flex; justify-content: center; align-items: center;
+      z-index: 9999; transition: opacity 0.5s ease;
+    }
+    .spinner {
+      width: 50px; height: 50px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top: 3px solid var(--gold, #d4af37);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    #progressBar {
+      position: fixed; top: 0; left: 0; height: 4px;
+      background: var(--gold, #d4af37); width: 0%; z-index: 9998;
+      transition: width 0.1s ease;
+    }
+
+    #scrollTopBtn {
+      position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px;
+      background: var(--gold, #d4af37); color: #000; border: none;
+      border-radius: 50%; font-size: 18px; cursor: pointer; display: none;
+      justify-content: center; align-items: center; z-index: 997;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.3s ease;
+    }
+    #scrollTopBtn:hover { transform: scale(1.1); }
+
+    .whatsapp-float{
+      position:fixed;bottom:95px;right:26px;z-index:998;
+      width:58px;height:58px;border-radius:50%;
+      background:#25D366;color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      font-size:30px;box-shadow:0 8px 22px rgba(0,0,0,.3);
+      transition:.3s;
+    }
+    .whatsapp-float:hover{transform:scale(1.08);}
+
+    header{position:fixed;width:100%;top:37px;left:0;z-index:999;}
+    .navbar{
+      width:92%;max-width:1300px;margin:auto;height:80px;
+      display:flex;justify-content:space-between;align-items:center;
+      background:rgba(11,11,12,0.85);backdrop-filter:blur(10px);
+      padding:10px 25px;border-bottom:1px solid rgba(212,175,55,0.2);
+      border-radius:0 0 12px 12px;
+    }
+    .logo img{height:45px;width:auto;background:#fff;padding:4px 10px;border-radius:4px;}
+    .nav-links{display:flex;gap:20px;align-items:center;}
+    .nav-links a{color:#fff;font-size:14px;font-weight:500;transition:.3s;}
+    .nav-links a:hover{color:var(--gold);}
+    .menu-btn{display:none;color:#fff;font-size:24px;cursor:pointer;}
+
+    @media(max-width:860px){
+      .nav-links{
+        position:absolute;top:80px;left:0;width:100%;
+        background:#0b0b0c;flex-direction:column;align-items:center;
+        padding:20px 0;display:none;gap:18px;
+      }
+      .nav-links.active{display:flex;}
+      .menu-btn{display:block;}
+    }
+
+    .hero{height:100vh;min-height:550px;position:relative;background:var(--black);}
+    .slider{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;}
+    .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease-in-out;width:100%;height:100%;}
+    .slide.active{opacity:1;z-index:1;}
+    .slide img{width:100%;height:100%;object-fit:cover;}
+    .overlay{position:absolute;inset:0;background:rgba(0,0,0,0.65);z-index:2;}
+    .hero-content{
+      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      text-align:center;color:#fff;width:90%;max-width:750px;z-index:3;
+    }
+    .hero-content h3{font-size:14px;letter-spacing:4px;color:var(--gold-soft);font-weight:400;}
+    .hero-content h1{font-size:clamp(2rem,5vw,3.5rem);margin:12px 0;font-weight:700;}
+    .hero-content .slogan{font-size:clamp(1rem,2vw,1.3rem);color:var(--gold-soft);font-style:italic;}
+    .hero-content .slogan .gu{display:block;font-family:'Noto Sans Gujarati',sans-serif;font-style:normal;font-size:1rem;color:#ddd;margin-top:4px;}
+    .hero-buttons{margin-top:25px;display:flex;justify-content:center;gap:15px;}
+    .btn{padding:12px 28px;background:var(--gold);color:#000;font-weight:600;border-radius:25px;transition:.3s;display:inline-block;}
+    .btn:hover{background:var(--gold-soft);transform:translateY(-3px);}
+    .btn2{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.5);}
+    .btn2:hover{background:#fff;color:#000;}
+
+    section{padding:90px 8%;}
+    .section-title{text-align:center;margin-bottom:45px;}
+    .section-title h5{color:var(--gold);letter-spacing:2px;font-size:12px;text-transform:uppercase;font-weight:600;}
+    .section-title h2{font-size:clamp(1.8rem,3vw,2.4rem);margin-top:8px;color:var(--black);}
+
+    .about{background:#fff;}
+    .about-container{display:flex;align-items:center;gap:50px;}
+    .about-image{flex:1;border-radius:15px;overflow:hidden;box-shadow:0 15px 35px rgba(0,0,0,0.1);}
+    .about-image img{width:100%;height:100%;object-fit:cover;}
+    .about-content{flex:1;}
+    .about-content h6{color:var(--gold);letter-spacing:2px;font-size:12px;text-transform:uppercase;}
+    .about-content h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:10px 0 15px;}
+    .about-content p{color:var(--gray);line-height:1.8;font-size:15px;}
+    .about-features{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .feature{display:flex;align-items:center;gap:10px;}
+    .feature i{color:#25D366;font-size:16px;}
+    .feature span{font-size:14px;font-weight:500;}
+    @media(max-width:768px){.about-container{flex-direction:column;}}
+
+    .products{background:var(--offwhite);}
+    .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+    @media(max-width:1024px){.product-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:600px){.product-grid{grid-template-columns:1fr;}}
+    .product-card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,0.06);transition:.3s;cursor:pointer;}
+    .product-card:hover{transform:translateY(-6px);box-shadow:0 12px 25px rgba(212,175,55,0.2);}
+    .product-media{height:190px;position:relative;overflow:hidden;}
+    .product-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out;}
+    .product-media img.active{opacity:1;}
+    .product-card .body{padding:20px;}
+    .product-tag{color:var(--gold);font-size:11px;letter-spacing:1px;font-weight:600;text-transform:uppercase;}
+    .product-card h3{font-size:1.2rem;margin:8px 0;}
+    .product-card p{color:var(--gray);font-size:13.5px;line-height:1.6;}
+
+    .modal{
+      display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);
+      z-index:10000;justify-content:center;align-items:center;padding:20px;
+    }
+    .modal.active{display:flex;}
+    .modal-content{
+      background:#fff;width:100%;max-width:850px;border-radius:16px;
+      overflow:hidden;position:relative;animation:modalScale .3s ease;
+    }
+    @keyframes modalScale{from{transform:scale(0.8);opacity:0;}to{transform:scale(1);opacity:1;}}
+    .modal-close{
+      position:absolute;top:15px;right:15px;background:#000;color:#fff;
+      width:36px;height:36px;border-radius:50%;display:flex;align-items:center;
+      justify-content:center;cursor:pointer;font-size:18px;z-index:10;transition:.3s;
+    }
+    .modal-close:hover{background:var(--gold);color:#000;}
+    .modal-body{padding:30px;max-height:85vh;overflow-y:auto;}
+
+    .gallery{background:#fff;}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+    @media(max-width:1024px){.gallery-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:600px){.gallery-grid{grid-template-columns:1fr;}}
+    .gallery-tile{height:240px;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;}
+    .gallery-tile img{width:100%;height:100%;object-fit:cover;transition:.4s;}
+    .gallery-tile:hover img{transform:scale(1.06);}
+    .gallery-overlay{
+      position:absolute;bottom:0;left:0;width:100%;background:linear-gradient(transparent,rgba(0,0,0,0.8));
+      color:#fff;padding:15px 12px 10px;font-size:13px;font-weight:500;
+    }
+
+    .view-more-gallery-container {
+      text-align: center;
+      margin-top: 35px;
+    }
+    .view-more-gallery-btn {
+      background: var(--black);
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .view-more-gallery-btn:hover {
+      background: var(--gold);
+      color: #000;
+      transform: translateY(-2px);
+    }
+    .extra-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
+    @media(max-width: 768px) {
+      .extra-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .extra-gallery-tile {
+      height: 160px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      border: 1px solid #ddd;
+    }
+    .extra-gallery-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+    .extra-gallery-tile:hover img {
+      transform: scale(1.05);
+    }
+    
+    .reviews{background:var(--offwhite);}
+    .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;}
+    @media(max-width:900px){.review-grid{grid-template-columns:1fr;}}
+    .review-card{background:#fff;padding:30px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,0.05);}
+    .review-card .stars{color:var(--gold);margin-bottom:10px;font-size:14px;}
+    .review-card p{color:var(--gray);font-style:italic;font-size:14px;margin-bottom:15px;}
+    .review-card h4{font-size:15px;color:var(--black);}
+
+    .reviews-wrapper{position:relative;}
+    .reviews-scroll-box{max-height:480px;overflow:hidden;position:relative;transition:max-height 0.5s ease;}
+    .reviews-scroll-box.expanded{max-height:3000px;}
+
+    .view-more-container{text-align:center;margin-top:30px;}
+    .view-more-btn{
+      background:var(--black);color:var(--gold);border:1px solid var(--gold);
+      padding:10px 25px;border-radius:25px;font-size:14px;font-weight:600;cursor:pointer;transition:0.3s;
+    }
+    .view-more-btn:hover{background:var(--gold);color:#000;}
+
+    .add-review-box{margin-top:50px;background:#fff;padding:30px;border-radius:15px;max-width:700px;margin-left:auto;margin-right:auto;box-shadow:0 5px 15px rgba(0,0,0,0.05);}
+    .add-review-box h3{margin-bottom:15px;text-align:center;}
+    .review-form{display:flex;flex-direction:column;gap:12px;}
+    .review-form input, .review-form textarea, .review-form select{
+      width:100%;padding:12px 15px;border:1px solid #ddd;border-radius:8px;outline:none;font-size:14px;background:#fff;
+    }
+    .review-form textarea{height:90px;resize:none;}
+
+    .contact{color:#fff;}
+    .contact-container{display:flex;gap:50px;}
+    @media(max-width:900px){.contact-container{flex-direction:column;}}
+    .contact-info,.contact-form{flex:1;}
+    .contact-info h2,.contact-form h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:15px;}
+    .contact-info p{color:rgba(255,255,255,0.7);margin-bottom:15px;font-size:14.5px;}
+    .contact-item{display:flex;align-items:center;gap:12px;margin:16px 0;font-size:14.5px;}
+    .contact-item i{color:var(--gold);font-size:18px;}
+    .contact-form{display:flex;flex-direction:column;gap:14px;}
+    .contact-form input,.contact-form textarea{
+      width:100%;padding:13px 16px;border:1.5px solid rgba(212, 175, 55, 0.5);
+      border-radius:8px;background:rgba(255,255,255,0.12);color:#fff;outline:none;font-size:14px;
+    }
+    .contact-form input::placeholder, .contact-form textarea::placeholder {color:#e0e0e0;}
+    .contact-form input:focus, .contact-form textarea:focus {border-color:var(--gold);background:rgba(255,255,255,0.18);}
+    .contact-form textarea{height:110px;resize:none;}
+    .contact-form button{
+      padding:13px;border:none;background:var(--gold);color:#000;font-weight:600;
+      border-radius:25px;cursor:pointer;transition:.3s;
+    }
+    .contact-form button:hover{background:var(--gold-soft);}
+
+    footer{background:#050505;color:#fff;text-align:center;padding:45px 20px 25px;}
+    footer h3{margin:6px 0 6px;font-size:1.3rem;color:var(--gold);}
+    footer p.foot-slogan{color:#aaa;font-size:13.5px;}
+    .copyright{margin-top:20px;font-size:12px;color:#666;border-top:1px solid #1a1a1a;padding-top:15px;}
+    
+    .faq{background:#fff;}
+    .faq-container{max-width:800px;margin:auto;}
+    .faq-item{background:var(--offwhite);border-radius:10px;margin-bottom:15px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,0.03);}
+    .faq-question{padding:18px 20px;font-weight:600;font-size:16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--black);}
+    .faq-answer{padding:0 20px 18px;color:var(--gray);font-size:14.5px;line-height:1.6;display:none;}
+    .faq-item.active .faq-answer{display:block;}
+    .faq-question i{transition:.3s;}
+    .faq-item.active .faq-question i{transform:rotate(180deg);color:var(--gold);}
+
+    .comparison{background:var(--offwhite);}
+    .comp-table-wrapper{overflow-x:auto;}
+    .comp-table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.05);min-width:600px;}
+    .comp-table th, .comp-table td{padding:16px 20px;text-align:left;font-size:14.5px;border-bottom:1px solid #eee;}
+    .comp-table th{background:var(--black);color:#fff;font-weight:600;}
+    .comp-table th:first-child{color:var(--gold);}
+    .comp-table tr:last-child td{border-bottom:none;}
+    .comp-table tr:hover{background:rgba(212,175,55,0.03);}
+    .comp-table i.fa-check{color:#25D366;}
+    .comp-table i.fa-xmark{color:#ff4d4d;}
+
+    .calc-trigger-container{text-align:center;padding:20px 8%;background:var(--offwhite);}
+    .calc-pill-btn{
+      display:inline-flex;align-items:center;gap:12px;background:var(--black);color:#fff;
+      padding:16px 35px;border-radius:50px;font-size:16px;font-weight:600;cursor:pointer;
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);transition:.3s;border:2px solid var(--gold);
+    }
+    .calc-pill-btn:hover{background:var(--gold);color:#000;transform:translateY(-3px);}
+    .calc-pill-btn i{color:var(--gold);font-size:20px;transition:.3s;}
+    .calc-pill-btn:hover i{color:#000;}
+
+    .calc-dropdown-modal{
+      display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);
+      z-index:10001;justify-content:center;align-items:center;padding:20px;
+    }
+    .calc-dropdown-modal.active{display:flex;}
+    .calc-dropdown-content{
+      background:#fff;width:100%;max-width:520px;border-radius:20px;
+      padding:25px;position:relative;box-shadow:0 15px 35px rgba(0,0,0,0.2);
+      animation:modalScale .3s ease;border-top:5px solid var(--gold);
+      max-height: 90vh; overflow-y: auto;
+    }
+    .calc-close{
+      position:absolute;top:15px;right:15px;background:#eee;color:#000;
+      width:32px;height:32px;border-radius:50%;display:flex;align-items:center;
+      justify-content:center;cursor:pointer;font-size:16px;transition:.3s;
+    }
+    .calc-close:hover{background:var(--gold);color:#fff;}
+    .calc-group{margin-bottom:12px;text-align:left;}
+    .calc-group label{display:block;font-size:13px;font-weight:600;margin-bottom:5px;color:var(--black);}
+    .calc-group select, .calc-group input{
+      width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:8px;outline:none;font-size:13.5px;background:#f9f9f9;
+    }
+    .calc-result-box{background:var(--black);color:#fff;padding:15px;border-radius:10px;text-align:center;margin-top:15px;}
+    .calc-result-box h4{color:var(--gold);font-size:1.2rem;margin-top:4px;}
+
+    .map-float{
+      position:fixed;bottom:26px;right:26px;z-index:998;
+      width:58px;height:58px;border-radius:50%;
+      background:#EA4335;color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      font-size:26px;box-shadow:0 8px 22px rgba(0,0,0,.3);
+      transition:.3s;
+    }
+    .map-float:hover{transform:scale(1.08);background:#d33426;}
+    .catalog-float{
+      position:fixed;bottom:164px;right:26px;z-index:998;
+      width:58px;height:58px;border-radius:50%;
+      background:var(--gold);color:#000;
+      display:flex;align-items:center;justify-content:center;
+      font-size:24px;box-shadow:0 8px 22px rgba(0,0,0,.3);
+      transition:.3s;
+    }
+    .catalog-float:hover{transform:scale(1.08);background:var(--gold-soft);}
+
+    .top-bar{
+      background: linear-gradient(90deg, #D4AF37, #E9CD73, #D4AF37);
+      background-size: 200% 100%;
+      color:#000; font-size:12.5px; font-weight:600;
+      text-align:center; padding:9px 15px; position:fixed; top:0; left:0;
+      width:100%; z-index:1000; letter-spacing:0.5px;
+      display:flex; justify-content:center; align-items:center; gap:15px;
+      animation: barGlow 3s infinite linear;
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.4);
+    }
+    @keyframes barGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .top-bar span{display:inline-flex; align-items:center; gap:6px;}
+    .top-bar a{color:#000; text-decoration:underline; font-weight:700;}
+    .top-bar i.fa-bolt {
+      animation: iconBlink 1.2s infinite ease-in-out;
+      color: #fff;
+    }
+    @keyframes iconBlink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .goog-te-combo {
+      background: rgba(0, 0, 0, 0.7) !important;
+      color: #fff !important;
+      border: 1px solid var(--gold) !important;
+      padding: 5px 10px !important;
+      border-radius: 6px !important;
+      font-size: 13px !important;
+      outline: none !important;
+      cursor: pointer !important;
+    }
+    .goog-te-combo option { background: #000 !important; color: #fff !important; }
+    .goog-te-banner-frame.skiptranslate { display: none !important; }
+    body { top: 0px !important; }
+    .goog-logo-link { display: none !important; }
+    .goog-te-gadget { color: transparent !important; font-size: 0px !important; }
+    .goog-te-gadget span { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <div id="loader"><div class="spinner"></div></div>
+  <div id="progressBar"></div>
+  <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <div class="top-bar">
+    <span><i class="fa-solid fa-bolt"></i> Direct Factory Outlet - Palanpur</span>
+    <span style="opacity: 0.5;">|</span>
+    <span><i class="fa-solid fa-phone"></i> Call Now: <a href="tel:9998081634">99980 81634</a></span>
+  </div>
+
+  <a href="https://wa.me/919998081634" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://www.google.com/maps/search/?api=1&query=Ghadtar+Windows+Esbipura+Road+Ahmedabad+Highway+Palanpur" target="_blank" class="map-float" title="View on Google Maps"><i class="fa-solid fa-map-location-dot"></i></a>
+  <a href="images/catalogue.pdf" target="_blank" class="catalog-float" title="Download E-Catalogue"><i class="fa-solid fa-file-arrow-down"></i></a>
+
+  <header id="header">
+    <nav class="navbar">
+      <a href="#" class="logo" onclick="openLogoModal()"><img src="images/logo.png" alt="Ghadtar Windows"></a>
+      <ul class="nav-links" id="navLinks">
+         <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 5px 0;">
+          <span style="color: var(--gold); font-size: 11px; font-weight: 600; margin-bottom: 2px;"><i class="fa-solid fa-globe"></i> Select Language (English, हिंदी, ગુજરાતી):</span>
+          <div id="google_translate_element"></div>
+        </li>
+      </ul>
+      <div class="menu-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></div>
+    </nav>
+  </header>
+      <section id="home" class="hero">
+    <div class="slider">
+      <div class="slide active"><img src="images/hero1.jpg" alt="Hero 1"></div>
+      <div class="slide"><img src="images/hero2.jpg" alt="Hero 2"></div>
+      <div class="slide"><img src="images/hero3.jpg" alt="Hero 3"></div>
+    </div>
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h3>Authorized Partner: SCL NEU & CORA</h3>
+      <h1>Transform Your Space With Premium uPVC Windows</h1>
+      <p class="slogan">Shaping Your Dreams <span class="gu">ઘડતર તમારા સપનાઓનું</span></p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn">Get Free Quote</a>
+        <a href="#products" class="btn btn2">View Products</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="about-container">
+      <div class="about-image"><img src="images/about.jpg" alt="About Factory"></div>
+      <div class="about-content">
+        <h6>Direct Manufacturer</h6>
+        <h2>Uncompromised Quality & Precision</h2>
+        <p>At Ghadtar Windows, we manufacture high-grade uPVC windows and doors using advanced machinery. Get factory-direct pricing without ever compromising on strength, finish, or soundproofing.</p>
+        <div class="about-features">
+          <div class="feature"><i class="fa-solid fa-check"></i><span>100% Soundproof</span></div>
+          <div class="feature"><i class="fa-solid fa-check"></i><span>Weather Resistant</span></div>
+          <div class="feature"><i class="fa-solid fa-check"></i><span>Termite Proof</span></div>
+          <div class="feature"><i class="fa-solid fa-check"></i><span>Low Maintenance</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="products">
+    <div class="section-title">
+      <h5>Catalogue</h5>
+      <h2>Our uPVC Systems (Click to Explore)</h2>
+    </div>
+    <div class="product-grid">
+      <div class="product-card" onclick="openProductModal('sliding')">
+        <div class="product-media prod-slider">
+          <img src="images/sliding-white-1.jpg" alt="Sliding White" class="active">
+          <img src="images/sliding-color-1.jpg" alt="Sliding Colour">
+        </div>
+        <div class="body">
+          <span class="product-tag">Modern</span>
+          <h3>Sliding Windows</h3>
+          <p>Smooth operation, 2-track & 3-track options with mosquito mesh.</p>
+        </div>
+      </div>
+      <div class="product-card" onclick="openProductModal('casement')">
+        <div class="product-media prod-slider">
+          <img src="images/casement-white-1.jpg" alt="Casement White" class="active">
+          <img src="images/casement-color-1.jpg" alt="Casement Colour">
+        </div>
+        <div class="body">
+          <span class="product-tag">Classic</span>
+          <h3>Casement Windows</h3>
+          <p>Openable design offering maximum ventilation and airtight sealing.</p>
+        </div>
+      </div>
+      <div class="product-card" onclick="openProductModal('openable')">
+        <div class="product-media prod-slider">
+          <img src="images/openable-white-1.jpg" alt="Openable White" class="active">
+          <img src="images/openable-color-1.jpg" alt="Openable Colour">
+        </div>
+        <div class="body">
+          <span class="product-tag">Ventilation</span>
+          <h3>Openable Systems</h3>
+          <p>Durable framework built for optimal airflow and weather protection.</p>
+        </div>
+      </div>
+      <div class="product-card" onclick="openProductModal('doors')">
+        <div class="product-media prod-slider">
+          <img src="images/door-white-1.jpg" alt="Doors White" class="active">
+          <img src="images/door-color-1.jpg" alt="Doors Colour">
+        </div>
+        <div class="body">
+          <span class="product-tag">Security</span>
+          <h3>uPVC Doors</h3>
+          <p>Robust build quality with SCL NEU & CORA hardware integration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="gallery" class="gallery">
+    <div class="section-title">
+      <h5>Portfolio</h5>
+      <h2>Recent Installations (Click to View Project Details)</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-tile" onclick="openInstallModal(1)">
+        <img src="images/gallery1.jpg" alt="Installation 1">
+        <div class="gallery-overlay">📍 Palanpur Luxury Villa</div>
+      </div>
+      <div class="gallery-tile" onclick="openInstallModal(2)">
+        <img src="images/gallery2.jpg" alt="Installation 2">
+        <div class="gallery-overlay">📍 Deesa Heights Project</div>
+      </div>
+      <div class="gallery-tile" onclick="openInstallModal(3)">
+        <img src="images/gallery3.jpg" alt="Installation 3">
+        <div class="gallery-overlay">📍 Abu Road Modern Bungalow</div>
+      </div>
+      <div class="gallery-tile" onclick="openInstallModal(4)">
+        <img src="images/gallery4.jpg" alt="Installation 4">
+        <div class="gallery-overlay">📍 Unjha Commercial Complex</div>
+      </div>
+    </div>
+
+    <!-- View More Photos Button -->
+    <div class="view-more-gallery-container">
+      <button class="view-more-gallery-btn" onclick="openMoreGalleryModal()">
+        <i class="fa-solid fa-images"></i> View More Photos & Projects <i class="fa-solid fa-arrow-right" style="font-size: 12px;"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- More Photos Popup Modal -->
+  <div class="modal" id="moreGalleryModal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-close" onclick="closeMoreGalleryModal()">&times;</div>
+      <div class="modal-body">
+        <h2 style="margin-bottom: 5px; color: var(--black); font-size: 1.3rem;">All Project Installations</h2>
+        <p style="color: var(--gray); font-size: 13px; margin-bottom: 15px;">Click on any photo to zoom in.</p>
+        
+        <div class="extra-gallery-grid">
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra1.jpg')">
+            <img src="images/extra1.jpg" alt="Extra Project 1">
+          </div>
+          <div class="extra-gallery-tile" onclick="openVideoLightbox('images/factory-video1.mp4')" style="background:#000; display:flex; align-items:center; justify-content:center; position:relative;">
+            <video src="images/factory-video1.mp4" style="width:100%; height:100%; object-fit:cover; opacity:0.7;"></video>
+            <div style="position:absolute; color:#fff; font-size:32px; background:rgba(0,0,0,0.5); width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+              <i class="fa-solid fa-play" style="margin-left:3px; color:var(--gold);"></i>
+            </div>
+          </div>
+          <div class="extra-gallery-tile" onclick="openVideoLightbox('images/factory-video2.mp4')" style="background:#000; display:flex; align-items:center; justify-content:center; position:relative;">
+            <video src="images/factory-video2.mp4" style="width:100%; height:100%; object-fit:cover; opacity:0.7;"></video>
+            <div style="position:absolute; color:#fff; font-size:32px; background:rgba(0,0,0,0.5); width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+              <i class="fa-solid fa-play" style="margin-left:3px; color:var(--gold);"></i>
+            </div>
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra2.jpg')">
+            <img src="images/extra2.jpg" alt="Extra Project 2">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra3.jpg')">
+            <img src="images/extra3.jpg" alt="Extra Project 3">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra4.jpg')">
+            <img src="images/extra4.jpg" alt="Extra Project 4">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra5.jpg')">
+            <img src="images/extra5.jpg" alt="Extra Project 5">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra6.jpg')">
+            <img src="images/extra6.jpg" alt="Extra Project 6">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra7.jpg')">
+            <img src="images/extra7.jpg" alt="Extra Project 7">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra8.jpg')">
+            <img src="images/extra8.jpg" alt="Extra Project 8">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra9.jpg')">
+            <img src="images/extra9.jpg" alt="Extra Project 9">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra10.jpg')">
+            <img src="images/extra10.jpg" alt="Extra Project 10">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra11.jpg')">
+            <img src="images/extra11.jpg" alt="Extra Project 11">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra12.jpg')">
+            <img src="images/extra12.jpg" alt="Extra Project 12">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra13.jpg')">
+            <img src="images/extra13.jpg" alt="Extra Project 13">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra14.jpg')">
+            <img src="images/extra14.jpg" alt="Extra Project 14">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra15.jpg')">
+            <img src="images/extra15.jpg" alt="Extra Project 15">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra16.jpg')">
+            <img src="images/extra16.jpg" alt="Extra Project 16">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra17.jpg')">
+            <img src="images/extra17.jpg" alt="Extra Project 17">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra18.jpg')">
+            <img src="images/extra18.jpg" alt="Extra Project 18">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra19.jpg')">
+            <img src="images/extra19.jpg" alt="Extra Project 19">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra20.jpg')">
+            <img src="images/extra20.jpg" alt="Extra Project 20">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra21.jpg')">
+            <img src="images/extra21.jpg" alt="Extra Project 21">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra22.jpg')">
+            <img src="images/extra22.jpg" alt="Extra Project 22">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra23.jpg')">
+            <img src="images/extra23.jpg" alt="Extra Project 23">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra24.jpg')">
+            <img src="images/extra24.jpg" alt="Extra Project 24">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra25.jpg')">
+            <img src="images/extra25.jpg" alt="Extra Project 25">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra26.jpg')">
+            <img src="images/extra26.jpg" alt="Extra Project 26">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra27.jpg')">
+            <img src="images/extra27.jpg" alt="Extra Project 27">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra28.jpg')">
+            <img src="images/extra28.jpg" alt="Extra Project 28">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra29.jpg')">
+            <img src="images/extra29.jpg" alt="Extra Project 29">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra30.jpg')">
+            <img src="images/extra30.jpg" alt="Extra Project 30">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra31.jpg')">
+            <img src="images/extra31.jpg" alt="Extra Project 31">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra32.jpg')">
+            <img src="images/extra32.jpg" alt="Extra Project 32">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra33.jpg')">
+            <img src="images/extra33.jpg" alt="Extra Project 33">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra34.jpg')">
+            <img src="images/extra34.jpg" alt="Extra Project 34">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra35.jpg')">
+            <img src="images/extra35.jpg" alt="Extra Project 35">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra36.jpg')">
+            <img src="images/extra36.jpg" alt="Extra Project 36">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra37.jpg')">
+            <img src="images/extra37.jpg" alt="Extra Project 37">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra38.jpg')">
+            <img src="images/extra38.jpg" alt="Extra Project 38">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra39.jpg')">
+            <img src="images/extra39.jpg" alt="Extra Project 39">
+          </div>
+          <div class="extra-gallery-tile" onclick="openLightbox('images/extra40.jpg')">
+            <img src="images/extra40.jpg" alt="Extra Project 40">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="universalModal">
+    <div class="modal-content">
+      <div class="modal-close" onclick="closeModal()">&times;</div>
+      <div class="modal-body" id="modalBodyText"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal for Zooming Photos -->
+  <div class="modal" id="lightboxModal" style="z-index: 10005;">
+    <div class="modal-content" style="max-width: 700px; background: transparent; box-shadow: none; text-align: center;">
+      <div class="modal-close" onclick="closeLightbox()" style="background: #fff; color: #000; top: 0; right: 0;">&times;</div>
+      <img id="lightboxImg" src="" alt="Zoomed Photo" style="width: 100%; height: auto; border-radius: 10px; max-height: 80vh; object-fit: contain;">
+    </div>
+  </div>
+  <section id="faq" class="faq">
+    <div class="section-title">
+      <h5>Got Questions?</h5>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-container">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question"><span>uPVC windows ki warranty kitni hoti hai?</span><i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-answer">Humari high-grade uPVC profiles aur manufacturing par long-lasting durability milti hai, jisme color fading ya warping ki koi problem nahi aati. Iski life 20-25 saal se zyada hoti hai.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question"><span>Kya ye windows 100% soundproof hoti hain?</span><i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-answer">Haan! Double/triple glazing glass aur double-seal airtight mechanism ki wajah se yeh baahar ke shor-sharabe ko 90% tak rok deti hain.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question"><span>Kya aap Palanpur ke alawa baaki cities mein bhi service dete hain?</span><i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-answer">Ji haan, hum Palanpur ke sath-sath Deesa, Danta, Abu Road, Unjha aur poore North Gujarat mein manufacturing, delivery aur installation ki service provide karte hain.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question"><span>Order dene ke baad kitne din mein fitting ho jati hai?</span><i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-answer">Measurement lene ke baad aapke requirements ke mutabiq factory mein custom manufacturing hoti hai, aur aam taur par 7 se 10 dino ke andar installation complete kar di jati hai.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="comparison">
+    <div class="section-title">
+      <h5>Why Choose uPVC?</h5>
+      <p style="color:var(--gold); font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:1px; margin-top:5px;">uPVC vs Traditional Windows</p>
+      <h2>Superiority in Every Detail</h2>
+    </div>
+    <div class="comp-table-wrapper">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Ghadtar uPVC Windows</th>
+            <th>Aluminium Windows</th>
+            <th>Wooden Windows</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Sound Insulation</strong></td>
+            <td><i class="fa-solid fa-check"></i> 90% Noise Reduction (Airtight)</td>
+            <td><i class="fa-solid fa-xmark"></i> Poor (Allows outside noise)</td>
+            <td><i class="fa-solid fa-xmark"></i> Average</td>
+          </tr>
+          <tr>
+            <td><strong>Weather Resistance</strong></td>
+            <td><i class="fa-solid fa-check"></i> No rust, fading or warping</td>
+            <td><i class="fa-solid fa-check"></i> Resists rust but corrodes in coastal areas</td>
+            <td><i class="fa-solid fa-xmark"></i> Damaged by rain & moisture</td>
+          </tr>
+          <tr>
+            <td><strong>Termite & Pest Proof</strong></td>
+            <td><i class="fa-solid fa-check"></i> 100% Termite Proof</td>
+            <td><i class="fa-solid fa-check"></i> Yes</td>
+            <td><i class="fa-solid fa-xmark"></i> Highly prone to termites</td>
+          </tr>
+          <tr>
+            <td><strong>Maintenance</strong></td>
+            <td><i class="fa-solid fa-check"></i> Zero maintenance (Just wipe clean)</td>
+            <td><i class="fa-solid fa-xmark"></i> Regular cleaning required</td>
+            <td><i class="fa-solid fa-xmark"></i> Requires regular painting & polishing</td>
+          </tr>
+          <tr>
+            <td><strong>Energy Efficiency</strong></td>
+            <td><i class="fa-solid fa-check"></i> Excellent thermal insulation</td>
+            <td><i class="fa-solid fa-xmark"></i> Conducts heat easily</td>
+            <td><i class="fa-solid fa-check"></i> Good natural insulation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="calc-trigger-container">
+    <div class="calc-pill-btn" onclick="openCalcModal()">
+      <i class="fa-solid fa-calculator"></i> Calculate uPVC Window & Door Price Instantly <i class="fa-solid fa-chevron-right" style="font-size:12px;"></i>
+    </div>
+  </div>
+
+  <div class="calc-dropdown-modal" id="calcModal">
+    <div class="calc-dropdown-content" style="max-width: 520px;">
+      <div class="calc-close" onclick="closeCalcModal()">&times;</div>
+      <div class="section-title" style="margin-bottom:12px; text-align:center;">
+        <h5 style="color:var(--gold); font-size:11px; letter-spacing:2px; text-transform:uppercase;">Multi-Item Estimator</h5>
+        <h2 style="font-size:1.4rem; margin-top:2px;">Calculate uPVC Window & Door Price Instantly</h2>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div class="calc-group">
+          <label>Finish Type</label>
+          <select id="calcBrand">
+            <option value="white">White uPVC</option>
+            <option value="color">Colour uPVC</option>
+          </select>
+        </div>
+        <div class="calc-group">
+          <label>System Type</label>
+          <select id="calcType" onchange="checkSystemType()">
+            <option value="sliding3">3-Track Sliding (with Mosquito Mesh)</option>
+            <option value="sliding2">2-Track Sliding</option>
+            <option value="openable">Openable System</option>
+            <option value="casement">Casement Window</option>
+            <option value="fix">Fix Glass</option>
+            <option value="door">uPVC Door (₹8k - ₹12k range)</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+        <div class="calc-group">
+          <label>Quantity (Pcs)</label>
+          <input type="number" id="calcQty" value="1" min="1" step="1">
+        </div>
+        <div class="calc-group">
+          <label id="widthLabel">Width (ft)</label>
+          <input type="number" id="calcWidth" value="5" min="1" step="0.1">
+        </div>
+        <div class="calc-group">
+          <label id="heightLabel">Height (ft)</label>
+          <input type="number" id="calcHeight" value="4" min="1" step="0.1">
+        </div>
+      </div>
+
+      <div id="doorNote" style="background: rgba(0,0,0,0.03); border: 1px dashed #ccc; padding: 6px 10px; border-radius: 6px; margin: 8px 0; text-align: center; display: none;">
+        <p style="font-size: 11px; color: #777; margin: 0;">
+          💡 <em>Note: Door price ranges between ₹8,000 to ₹12,000 per piece. Width/Height is not required for doors.</em>
+        </p>
+      </div>
+
+      <div style="text-align: center; margin-top: 5px;">
+        <button type="button" class="btn" onclick="addItemToCart()" style="padding: 8px 20px; font-size: 13px; width:100%;">+ Add Item to Estimate List</button>
+      </div>
+
+      <div style="margin-top: 12px; border-top: 1px dashed #ddd; padding-top: 8px;">
+        <h4 style="font-size: 13px; margin-bottom: 6px; color: var(--black);">🛒 Added Items List:</h4>
+        <div id="cartItemsContainer" style="max-height: 120px; overflow-y: auto; background: #f9f9f9; border-radius: 8px; padding: 6px; font-size: 12px;">
+          <p style="color: #888; text-align: center; margin: 8px 0;">No items added yet.</p>
+        </div>
+      </div>
+
+      <div class="calc-result-box" style="margin-top: 10px; padding: 12px;">
+        <h4 id="grandTotalOutput" style="font-size: 1.2rem; color:var(--gold);">Grand Total: ₹ 0</h4>
+        <div style="margin-top: 10px;">
+          <a href="#" id="cartWhatsAppBtn" target="_blank" class="btn" style="padding: 10px 20px; font-size: 13px; display:inline-block; width:100%; text-align:center; background:#25D366; color:#fff;">Ask Final Quotation on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section id="reviews" class="reviews">
+    <div class="section-title">
+      <h5>Testimonials</h5>
+      <h2>What Our Clients Say</h2>
+    </div>
+
+    <div class="reviews-wrapper">
+      <div class="reviews-scroll-box" id="reviewsScrollBox">
+        <div class="review-grid" id="reviewContainer">
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"Ghadtar Windows ne mere ghar mein sliding windows lagwayi hain. Soundproofing aur finish ekdum zabardast hai. Highly recommended!"</p>
+            <h4>- Natubhai mistry, Runi</h4>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"Factory direct price par itni acchi quality milna mushkil hai. Vanabhai aur unki team ka work aur service bohot professional hai."</p>
+            <h4>- Shaileshbhai(masiyat),Dhakha</h4>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"Ghadtar Windows mein SCL NEU & CORA premium hardware ki wajah se doors behad smooth chalte hain, aur bahar ka shor bahar hi reh jaata hai."</p>
+            <h4>- Dasrathbhai mistry, Runi</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="view-more-container" id="viewMoreBtnContainer">
+        <button class="view-more-btn" id="toggleReviewsBtn" onclick="toggleAllReviews()">View All Reviews</button>
+      </div>
+    </div>
+
+    <div class="add-review-box">
+      <h3>Add Your Review</h3>
+      <form class="review-form" id="reviewForm" onsubmit="handleReviewSubmit(event)">
+        <input type="text" id="reviewName" placeholder="Your Full Name & City" required>
+        <select id="reviewRating" required>
+          <option value="★★★★★">⭐⭐⭐⭐⭐ (5 Stars - Excellent)</option>
+          <option value="★★★★☆">⭐⭐⭐⭐☆ (4 Stars - Very Good)</option>
+          <option value="★★★☆☆">⭐⭐⭐☆☆ (3 Stars - Good)</option>
+          <option value="★★☆☆☆">⭐⭐☆☆☆ (2 Stars - Fair)</option>
+          <option value="★☆☆☆☆">⭐☆☆☆☆ (1 Star - Poor)</option>
+        </select>
+        <textarea id="reviewText" placeholder="Write your experience with Ghadtar Windows..." required></textarea>
+        <button type="submit" class="btn">Submit Review</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" style="background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('images/contact-bg.jpg') center/cover;">
+    <div class="contact-container">
+      <div class="contact-info">
+        <h2>Get In Touch</h2>
+        <p>Contact us for factory visits, quotations, and consultations.</p>
+        <div class="contact-item"><i class="fa-solid fa-location-dot"></i><span>Ghadtar Windows, Esbipura Road, Ahmedabad Highway, Palanpur - 385001 (B.K)</span></div>
+        <div class="contact-item"><i class="fa-solid fa-phone"></i><a href="tel:9998081634">Vanabhai: 99980 81634</a></div>
+        <div class="contact-item"><i class="fa-solid fa-phone"></i><a href="tel:9408070990">Dipakbhai: 94080 70990</a></div>
+        <div class="contact-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/919998081634">Chat on WhatsApp</a></div>
+        
+        <div style="margin-top: 20px;">
+          <a href="https://www.google.com/maps/search/?api=1&query=Ghadtar+Windows+Esbipura+Road+Ahmedabad+Highway+Palanpur" target="_blank" class="btn" style="display: inline-block; text-align: center; width: 100%;">
+            <i class="fa-solid fa-map-location-dot"></i> View Ghadtar Windows on Google Maps
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h2>Send an Inquiry</h2>
+        <form onsubmit="handleInquirySubmit(event)">
+          <input type="text" id="inquiryName" placeholder="Your Name" required>
+          <input type="tel" id="inquiryPhone" placeholder="Phone Number" required>
+          <textarea id="inquiryRequirement" placeholder="Your Requirement / Ask Price" required></textarea>
+          <button type="submit" class="btn" style="background:var(--gold); color:#000; font-weight:600; border:none; padding:13px; border-radius:25px; cursor:pointer; width:100%;">Send Inquiry on WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <img src="images/logo.png" alt="Logo" style="width:120px; margin:0 auto 15px; background:#fff; padding:6px; border-radius:6px;">
+    <h3>GHADTAR WINDOWS</h3>
+    <p class="foot-slogan">Shaping Your Dreams / <span class="gu">ઘડતર તમારા સપનાઓનું</span></p>
+    <div class="copyright">&copy; 2026 Ghadtar Windows. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    // Yahan apni Google Sheet wali Web App link paste karein
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwUWXs75xzFTBH1oUmbeQYTtYNVgS1KbnZm49mdFUhweLyeovW7GLY18zVhDUDbA5DK-g/exec';
+
+    function handleReviewSubmit(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('reviewName').value;
+      const rating = document.getElementById('reviewRating').value;
+      const text = document.getElementById('reviewText').value;
+
+      // 1. Website par live review dikhane ke liye
+      const reviewContainer = document.getElementById('reviewContainer');
+      const newCard = document.createElement('div');
+      newCard.className = 'review-card';
+      newCard.innerHTML = `
+        <div class="stars">${rating}</div>
+        <p>"${text}"</p>
+        <h4>- ${name}</h4>
+      `;
+      reviewContainer.insertBefore(newCard, reviewContainer.firstChild);
+
+      // 2. Google Sheet mein background mein bhejne ke liye
+      const formData = new FormData();
+      formData.append('Name', name);
+      formData.append('PhoneOrRating', rating);
+      formData.append('Message', text);
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => {
+          alert('Thank you! Your review has been submitted successfully.');
+          document.getElementById('reviewForm').reset();
+        })
+        .catch(error => console.error('Error!', error.message));
+    }
+
+    function handleInquirySubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('inquiryName').value;
+      const phone = document.getElementById('inquiryPhone').value;
+      const requirement = document.getElementById('inquiryRequirement').value;
+
+      // 1. Google Sheet mein background mein bhejne ke liye
+      const formData = new FormData();
+      formData.append('Name', name);
+      formData.append('PhoneOrRating', phone);
+      formData.append('Message', requirement);
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => {
+          // 2. WhatsApp par message bhejane ke liye
+          let waMessage = `*New Inquiry from Website!*\n\n`;
+          waMessage += `- *Name:* ${name}\n`;
+          waMessage += `- *Phone:* ${phone}\n`;
+          waMessage += `- *Requirement:* ${requirement}`;
+
+          let waUrl = `https://wa.me/919998081634?text=${encodeURIComponent(waMessage)}`;
+          window.open(waUrl, '_blank');
+          document.querySelector('.contact-form form').reset();
+        })
+        .catch(error => console.error('Error!', error.message));
+    }
+
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => { loader.style.display = 'none'; }, 500);
+
+      const sliders = document.querySelectorAll('.prod-slider');
+      sliders.forEach(slider => {
+        const imgs = slider.querySelectorAll('img');
+        if(imgs.length > 1) {
+          let idx = 0;
+          setInterval(() => {
+            imgs[idx].classList.remove('active');
+            idx = (idx + 1) % imgs.length;
+            imgs[idx].classList.add('active');
+          }, 3000);
+        }
+      });
+    });
+
+    window.addEventListener('scroll', function() {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+      if (winScroll > 300) { scrollTopBtn.style.display = 'flex'; } else { scrollTopBtn.style.display = 'none'; }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navLinks.classList.toggle('active');
+    });
+
+    const allLinks = document.querySelectorAll('.nav-links a');
+    allLinks.forEach(link => {
+      link.addEventListener('click', () => { navLinks.classList.remove('active'); });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+        navLinks.classList.remove('active');
+      }
+    });
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function nextSlide() {
+      if(slides.length > 0) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }
+    }
+    if(slides.length > 0) { setInterval(nextSlide, 4000); }
+
+    function toggleFaq(element) { element.classList.toggle('active'); }
+
+    function toggleAllReviews() {
+      const scrollBox = document.getElementById('reviewsScrollBox');
+      const btn = document.getElementById('toggleReviewsBtn');
+      scrollBox.classList.toggle('expanded');
+      if (scrollBox.classList.contains('expanded')) { 
+        btn.innerText = 'Show Less Reviews'; 
+      } else { 
+        btn.innerText = 'View All Reviews'; 
+      }
+    }
+
+    function openMoreGalleryModal() {
+      document.getElementById('moreGalleryModal').classList.add('active');
+    }
+
+    function closeMoreGalleryModal() {
+      document.getElementById('moreGalleryModal').classList.remove('active');
+    }
+
+    // Multi-Item Cart Calculator Logic
+    let cartItems = [];
+
+    function openCalcModal() {
+      document.getElementById('calcModal').classList.add('active');
+      checkSystemType();
+      updateCartDisplay();
+    }
+
+    function closeCalcModal() { document.getElementById('calcModal').classList.remove('active'); }
+
+    function checkSystemType() {
+      const type = document.getElementById('calcType').value;
+      const widthInput = document.getElementById('calcWidth');
+      const heightInput = document.getElementById('calcHeight');
+      const doorNote = document.getElementById('doorNote');
+
+      if(type === 'door') {
+        widthInput.disabled = true;
+        heightInput.disabled = true;
+        widthInput.style.opacity = '0.4';
+        heightInput.style.opacity = '0.4';
+        doorNote.style.display = 'block';
+      } else {
+        widthInput.disabled = false;
+        heightInput.disabled = false;
+        widthInput.style.opacity = '1';
+        widthInput.style.opacity = '1';
+        doorNote.style.display = 'none';
+      }
+    }
+
+    function addItemToCart() {
+      const brand = document.getElementById('calcBrand').value;
+      const type = document.getElementById('calcType').value;
+      const qty = parseInt(document.getElementById('calcQty').value) || 1;
+      const w = parseFloat(document.getElementById('calcWidth').value) || 0;
+      const h = parseFloat(document.getElementById('calcHeight').value) || 0;
+
+      let itemTotal = 0;
+      let typeName = "";
+      let dimensionText = "";
+
+      if(type === 'door') {
+        typeName = "uPVC Door System";
+        itemTotal = 10000 * qty; 
+        dimensionText = `${qty} Pcs (Range ₹8k - ₹12k)`;
+      } else {
+        const sqFt = parseFloat((w * h).toFixed(2));
+        dimensionText = `${w} x ${h} ft (${sqFt} sq.ft) x ${qty} Pcs`;
+        let rate = 0;
+        
+        if(brand === 'white') {
+          if(type === 'sliding3') { rate = 800; typeName = "White 3-Track Sliding (Mosquito Mesh)"; }
+          else if(type === 'sliding2') { rate = 600; typeName = "White 2-Track Sliding"; }
+          else if(type === 'openable') { rate = 800; typeName = "White Openable System"; }
+          else if(type === 'casement') { rate = 450; typeName = "White Casement Window"; }
+          else if(type === 'fix') { rate = 450; typeName = "White Fix Glass"; }
+        } else {
+          if(type === 'sliding3') { rate = 1150; typeName = "Colour 3-Track Sliding (Mosquito Mesh)"; }
+          else if(type === 'sliding2') { rate = 950; typeName = "Colour 2-Track Sliding"; }
+          else if(type === 'openable') { rate = 1150; typeName = "Colour Openable System"; }
+          else if(type === 'casement') { rate = 720; typeName = "Colour Casement Window"; }
+          else if(type === 'fix') { rate = 720; typeName = "Colour Fix Glass"; }
+        }
+        itemTotal = Math.round(sqFt * rate * qty);
+      }
+
+      cartItems.push({
+        name: typeName,
+        details: dimensionText,
+        total: itemTotal
+      });
+
+      updateCartDisplay();
+    }
+
+    function removeItemFromCart(index) {
+      cartItems.splice(index, 1);
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      const container = document.getElementById('cartItemsContainer');
+      let html = "";
+      let grandTotal = 0;
+      let waText = "Hi Ghadtar Windows, I want to ask for the final price / quotation for these items:\n\n";
+
+      if(cartItems.length === 0) {
+        html = '<p style="color: #888; text-align: center; margin: 8px 0;">No items added yet.</p>';
+        waText += "No items selected.";
+      } else {
+        cartItems.forEach((item, index) => {
+          grandTotal += item.total;
+          html += `<div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding:4px 0;">
+            <div><strong>${index + 1}. ${item.name}</strong><br><span style="color:#666; font-size:11px;">${item.details}</span></div>
+            <div style="text-align:right;"><b>₹ ${item.total.toLocaleString('en-IN')}</b> <i class="fa-solid fa-trash" style="color:#ff4d4d; cursor:pointer; margin-left:8px;" onclick="removeItemFromCart(${index})"></i></div>
+          </div>`;
+          waText += `- ${item.name} (${item.details}) : ₹ ${item.total.toLocaleString('en-IN')}\n`;
+        });
+      }
+
+      container.innerHTML = html;
+      document.getElementById('grandTotalOutput').innerText = `Grand Total: ₹ ${grandTotal.toLocaleString('en-IN')}`;
+      
+      waText += `\n*Estimated Total: ₹ ${grandTotal.toLocaleString('en-IN')}*\nPlease check and send me the final quotation.`;
+      document.getElementById('cartWhatsAppBtn').href = `https://wa.me/919998081634?text=${encodeURIComponent(waText)}`;
+    }
+
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('calcModal');
+      if (event.target == modal) { closeCalcModal(); }
+    });
+
+    // Product Data
+    const productData = {
+      sliding: {
+        title: "uPVC Sliding Windows",
+        desc: "Smooth operation, multi-track configurations (2-Track & 3-Track with mosquito mesh) built with 5mm clear Tuffen glass.",
+        whitePhotos: ["images/sliding-white-1.jpg", "images/sliding-white-2.jpg", "images/sliding-white-3.jpg"],
+        colorPhotos: ["images/sliding-color-1.jpg", "images/sliding-color-2.jpg", "images/sliding-color-3.jpg"],
+        pricing: [
+          { item: "3 Track (2+1 with Mosquito Mesh)", white: "₹800 / sq.ft", color: "₹1,150 / sq.ft" },
+          { item: "2 Track System", white: "₹600 / sq.ft", color: "₹950 / sq.ft" }
+        ]
+      },
+      casement: {
+        title: "uPVC Casement Windows",
+        desc: "Classic openable windows offering maximum ventilation and superior airtight sealing with 5mm clear Tuffen glass.",
+        whitePhotos: ["images/casement-white-1.jpg", "images/casement-white-2.jpg", "images/casement-white-3.jpg"],
+        colorPhotos: ["images/casement-color-1.jpg", "images/casement-color-2.jpg", "images/casement-color-3.jpg"],
+        pricing: [
+          { item: "Casement System", white: "₹450 / sq.ft", color: "₹720 / sq.ft" }
+        ]
+      },
+      openable: {
+        title: "uPVC Openable Systems",
+        desc: "Heavy-duty ventilation windows built with reinforced frames, multi-point locking systems and 5mm clear Tuffen glass.",
+        whitePhotos: ["images/openable-white-1.jpg", "images/openable-white-2.jpg", "images/openable-white-3.jpg"],
+        colorPhotos: ["images/openable-color-1.jpg", "images/openable-color-2.jpg", "images/openable-color-3.jpg"],
+        pricing: [
+          { item: "Openable System", white: "₹800 / sq.ft", color: "₹1,150 / sq.ft" }
+        ]
+      },
+      doors: {
+        title: "uPVC Doors & Designer Systems",
+        desc: "Sturdy, elegant sliding and folding doors integrated with SCL NEU & CORA hardware and 5mm clear Tuffen glass.",
+        whitePhotos: ["images/door-white-1.jpg", "images/door-white-2.jpg", "images/door-white-3.jpg"],
+        colorPhotos: ["images/door-color-1.jpg", "images/door-color-2.jpg", "images/door-color-3.jpg"],
+        pricing: [
+          { item: "Standard Door System", white: "₹8,000 to ₹12,000", color: "₹8,000 to ₹12,000" }
+        ]
+      }
+    };
+
+    function openProductModal(type) {
+      const modal = document.getElementById('universalModal');
+      const bodyText = document.getElementById('modalBodyText');
+      const item = productData[type];
+
+      let whiteImgHtml = '';
+      item.whitePhotos.forEach(img => {
+        whiteImgHtml += `<img src="${img}" alt="White Finish" onclick="openLightbox(this.src)" style="width:100%; height:110px; object-fit:cover; border-radius:6px; border:1px solid #ddd; cursor:pointer;" title="Click to zoom">`;
+      });
+
+      let colorImgHtml = '';
+      item.colorPhotos.forEach(img => {
+        colorImgHtml += `<img src="${img}" alt="Colour Finish" onclick="openLightbox(this.src)" style="width:100%; height:110px; object-fit:cover; border-radius:6px; border:1px solid #ddd; cursor:pointer;" title="Click to zoom">`;
+      });
+
+      let pricingTableHtml = `<table style="width:100%; border-collapse:collapse; margin-top:15px; font-size:13.5px;">
+        <thead>
+          <tr style="background:var(--black); color:#fff;">
+            <th style="padding:10px; text-align:left;">Configuration</th>
+            <th style="padding:10px; text-align:left; color:var(--gold);">White Price</th>
+            <th style="padding:10px; text-align:left; color:var(--gold);">Colour Price</th>
+          </tr>
+        </thead>
+        <tbody>`;
+      
+      item.pricing.forEach(p => {
+        pricingTableHtml += `<tr style="border-bottom:1px solid #eee;">
+          <td style="padding:8px 10px; font-weight:500;">${p.item}</td>
+          <td style="padding:8px 10px; color:#25D366; font-weight:600;">${p.white}</td>
+          <td style="padding:8px 10px; color:#25D366; font-weight:600;">${p.color}</td>
+        </tr>`;
+      });
+      pricingTableHtml += `</tbody></table>`;
+
+      bodyText.innerHTML = `
+        <span class="product-tag" style="color:var(--gold); font-size:11px; letter-spacing:1px; font-weight:600; text-transform:uppercase;">Product Specifications & Pricing</span>
+        <h2 style="margin: 8px 0 10px; color: var(--black); font-size: 1.4rem;">${item.title}</h2>
+        <p style="color: var(--gray); line-height: 1.6; font-size: 13.5px; margin-bottom:15px;">${item.desc}</p>
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+          <div style="background:#f9f9f9; padding:12px; border-radius:10px;">
+            <h4 style="font-size:13px; margin-bottom:8px; color:var(--black);">⚪ White Finish (Click to Zoom)</h4>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px;">${whiteImgHtml}</div>
+          </div>
+          <div style="background:#f9f9f9; padding:12px; border-radius:10px;">
+            <h4 style="font-size:13px; margin-bottom:8px; color:var(--black);">🎨 Colour Finish (Click to Zoom)</h4>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px;">${colorImgHtml}</div>
+          </div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #eee; border-radius:10px; padding:12px; box-shadow:0 3px 10px rgba(0,0,0,0.03);">
+          <h4 style="font-size:13.5px; color:var(--black);">💰 Official Price List (5mm Clear Tuffen Glass)</h4>
+          ${pricingTableHtml}
+        </div>
+
+        <div style="margin-top: 20px; text-align: center;">
+          <a href="https://wa.me/919998081634?text=Hi%20Ghadtar%20Windows,%20I%20want%20to%20enquire%20about%20${encodeURIComponent(item.title)}" target="_blank" class="btn" style="padding: 10px 25px; font-size: 14px;">Enquire on WhatsApp</a>
+        </div>
+      `;
+      modal.classList.add('active');
+    }
+    
+    function openVideoLightbox(videoSrc) {
+      const modal = document.getElementById('universalModal');
+      const bodyText = document.getElementById('modalBodyText');
+      bodyText.innerHTML = `
+        <div style="text-align: center; padding: 10px;">
+          <h2 style="margin-bottom: 15px; color: var(--black); font-size: 1.3rem;">Factory & Work Video</h2>
+          <video controls autoplay style="width: 100%; max-height: 75vh; border-radius: 10px;">
+            <source src="${videoSrc}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      `;
+      modal.classList.add('active');
+    }
+
+    function openLightbox(imgSrc) {
+      document.getElementById('lightboxImg').src = imgSrc;
+      document.getElementById('lightboxModal').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('active');
+    }
+
+    function openLogoModal() {
+      const modal = document.getElementById('universalModal');
+      const bodyText = document.getElementById('modalBodyText');
+      bodyText.innerHTML = `
+        <div style="text-align: center; padding: 20px;">
+          <h2 style="margin-bottom: 20px; color: var(--black);">Ghadtar Windows Logo</h2>
+          <div style="background: #0b0b0c; padding: 30px; border-radius: 12px; display: inline-block;">
+            <img src="images/logo.png" alt="Original Logo" style="max-height: 150px; width: auto; margin: 0 auto; display: block;">
+          </div>
+          <p style="color: var(--gray); margin-top: 20px; font-size: 14px;">Shaping Your Dreams / ઘડતર તમારા સપનાઓનું</p>
+        </div>
+      `;
+      modal.classList.add('active');
+    }
+
+    function closeModal() { document.getElementById('universalModal').classList.remove('active'); }
+  </script>
+
+  <!-- Google Translate Scripts -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,gu',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
